@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: jp.iida.hayato.aiwolf1.Player
+
