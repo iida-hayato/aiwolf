@@ -36,7 +36,7 @@ public class StrategyBodyGuard extends AbstractBaseStrategyPlayer {
 					isCameOut = true;
 
 					// ���b
-					workString = TemplateTalkFactory.comingout(getMe(), Role.BODYGUARD);
+					workString = TemplateTalkFactory.comingout(additionalInfo.getMe(), Role.BODYGUARD);
 					return workString;
 				}
 
@@ -45,7 +45,7 @@ public class StrategyBodyGuard extends AbstractBaseStrategyPlayer {
 					isCameOut = true;
 
 					// ���b
-					workString = TemplateTalkFactory.comingout(getMe(), Role.BODYGUARD);
+					workString = TemplateTalkFactory.comingout(additionalInfo.getMe(), Role.BODYGUARD);
 					return workString;
 				}
 

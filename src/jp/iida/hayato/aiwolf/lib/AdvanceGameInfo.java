@@ -459,11 +459,11 @@ public final class AdvanceGameInfo {
 					}
 
 					break;
-				case INQUESTED:	// ��\����
+				case IDENTIFIED:	// ��\����
 					int mediumAgentNo = talk.getAgent().getAgentIdx();
-					int inquestedAgentNo = utterance.getTarget().getAgentIdx();
-					Species inquestedResult = utterance.getResult();
-					Judge mjudge = new Judge(mediumAgentNo, inquestedAgentNo, inquestedResult, talk);
+					int IDENTIFIEDAgentNo = utterance.getTarget().getAgentIdx();
+					Species IDENTIFIEDResult = utterance.getResult();
+					Judge mjudge = new Judge(mediumAgentNo, IDENTIFIEDAgentNo, IDENTIFIEDResult, talk);
 
 
 					// �肢CO�҂���\���ʂ𗎂Ƃ����ꍇ�A�肢���ʂƂ��Ĉ���
@@ -574,7 +574,7 @@ public final class AdvanceGameInfo {
 					}
 
 					break;
-				case INQUESTED:	// ��\����
+				case IDENTIFIED:	// ��\����
 					int mediumAgentNo = talk.getAgent().getAgentIdx();
 
 					// �肢CO�҂���\���ʂ𗎂Ƃ����ꍇ�A�肢���ʂƂ��Ĉ���
@@ -1208,7 +1208,7 @@ public final class AdvanceGameInfo {
 								ret = new Utterance(TemplateTalkFactory.skip());
 							}
 							break;
-						case INQUESTED:
+						case IDENTIFIED:
 							if( ret.getTarget() == null || ret.getResult() == null ){
 								ret = new Utterance(TemplateTalkFactory.skip());
 							}

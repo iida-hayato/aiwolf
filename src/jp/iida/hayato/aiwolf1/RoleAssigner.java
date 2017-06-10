@@ -7,16 +7,16 @@ import jp.iida.hayato.aiwolf.strategyplayer.StrategyPossessed;
 import jp.iida.hayato.aiwolf.strategyplayer.StrategySeer;
 import jp.iida.hayato.aiwolf.strategyplayer.StrategyVillager;
 import jp.iida.hayato.aiwolf.strategyplayer.StrategyWerewolf;
-import org.aiwolf.client.base.player.AbstractRoleAssignPlayer;
+import org.aiwolf.sample.lib.AbstractRoleAssignPlayer;
 
-public class Player extends AbstractRoleAssignPlayer {
+public class RoleAssigner extends AbstractRoleAssignPlayer {
 
   /**
    * エージェント毎の統計情報
    */
   protected AgentStatistics agentStatistics = new AgentStatistics();
 
-  public Player() {
+  public RoleAssigner() {
     setVillagerPlayer(new StrategyVillager(agentStatistics));
     setSeerPlayer(new StrategySeer(agentStatistics));
     setMediumPlayer(new StrategyMedium(agentStatistics));

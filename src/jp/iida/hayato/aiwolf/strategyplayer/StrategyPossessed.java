@@ -69,7 +69,7 @@ public class StrategyPossessed extends AbstractBaseStrategyPlayer {
 			if( !isCameOut ){
 				isCameOut = true;
 
-				String ret = TemplateTalkFactory.comingout( getMe(), fakeRole );
+				String ret = TemplateTalkFactory.comingout( additionalInfo.getMe(), fakeRole );
 				return ret;
 			}
 
@@ -198,7 +198,7 @@ public class StrategyPossessed extends AbstractBaseStrategyPlayer {
 				inspectAgentNo = whiteList.get(0);
 				result = Species.WEREWOLF;
 
-				Judge newJudge = new Judge( getMe().getAgentIdx(),
+				Judge newJudge = new Judge( additionalInfo.getMe().getAgentIdx(),
                         inspectAgentNo,
                         result,
                         null );
@@ -322,7 +322,7 @@ public class StrategyPossessed extends AbstractBaseStrategyPlayer {
 
 						// �����o�����ꍇ�̎��_�����肷��
 						future = new ViewpointInfo(agi.selfViewInfo);
-						future.removePatternFromJudge( getMe().getAgentIdx(), white, Species.WEREWOLF );
+						future.removePatternFromJudge( additionalInfo.getMe().getAgentIdx(), white, Species.WEREWOLF );
 
 						// �����o���Ĕj�]���Ȃ��Ȃ炻���ɍ����o��
 						if( !future.wolfsidePatterns.isEmpty() ){
@@ -358,7 +358,7 @@ public class StrategyPossessed extends AbstractBaseStrategyPlayer {
 
 				// �����o�����ꍇ�̎��_�����肷��
 				future = new ViewpointInfo(agi.selfViewInfo);
-				future.removePatternFromJudge( getMe().getAgentIdx(), white, Species.WEREWOLF );
+				future.removePatternFromJudge( additionalInfo.getMe().getAgentIdx(), white, Species.WEREWOLF );
 
 				// �����o���Ĕj�]���Ȃ��Ȃ炻���ɍ����o��
 				if( !future.wolfsidePatterns.isEmpty() ){
@@ -391,7 +391,7 @@ public class StrategyPossessed extends AbstractBaseStrategyPlayer {
 			}
 		}
 
-		Judge newJudge = new Judge( getMe().getAgentIdx(),
+		Judge newJudge = new Judge( additionalInfo.getMe().getAgentIdx(),
 		                            inspectAgentNo,
 		                            result,
 		                            null );

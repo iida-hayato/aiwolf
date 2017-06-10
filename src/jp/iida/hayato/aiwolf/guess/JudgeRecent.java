@@ -292,7 +292,7 @@ public final class JudgeRecent extends AbstractGuessStrategy {
 						if( utterance.getTopic() == Topic.COMINGOUT ){
 							// CO����ŕ񍐒�
 							return true;
-						}else if( utterance.getTopic() != Topic.INQUESTED ){
+						}else if( utterance.getTopic() != Topic.IDENTIFIED ){
 							// CO�E���ʕ񍐈ȊO�̔������s���Ă���
 							return false;
 						}

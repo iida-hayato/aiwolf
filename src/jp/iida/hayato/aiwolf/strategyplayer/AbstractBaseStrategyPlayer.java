@@ -8,20 +8,28 @@ import jp.iida.hayato.aiwolf.lib.AgentParameter;
 import jp.iida.hayato.aiwolf.lib.AgentParameterItem;
 import jp.iida.hayato.aiwolf.lib.WolfsidePattern;
 import jp.iida.hayato.aiwolf.request.*;
-import org.aiwolf.client.base.player.AbstractRole;
 import org.aiwolf.client.lib.TemplateTalkFactory;
 import org.aiwolf.common.data.Agent;
+import org.aiwolf.common.data.Player;
 import org.aiwolf.common.data.Role;
 import org.aiwolf.common.data.Team;
 import org.aiwolf.common.net.GameInfo;
 import org.aiwolf.common.net.GameSetting;
+import org.aiwolf.sample.player.AdditionalGameInfo;
 
 import java.util.ArrayList;
 
 /**
  * 全ての役職のベースとなるクラス
  */
-public abstract class AbstractBaseStrategyPlayer extends AbstractRole {
+public abstract class AbstractBaseStrategyPlayer implements Player {
+
+	protected AdditionalGameInfo additionalInfo;
+	protected GameInfo gameInfo;
+
+	public String getName() {
+		return "wolf1";
+	}
 
 	/** 拡張ゲーム情報 */
 	protected AdvanceGameInfo agi;
@@ -108,7 +116,6 @@ public abstract class AbstractBaseStrategyPlayer extends AbstractRole {
 	public void initialize(GameInfo gameInfo, GameSetting gameSetting) {
 
 		try{
-			super.initialize(gameInfo, gameSetting);
 
 			// ゲーム開始時にfinish()を有効にする
 			isEnableFinish = true;
@@ -127,6 +134,8 @@ public abstract class AbstractBaseStrategyPlayer extends AbstractRole {
 
 			// 拡張ゲーム情報の初期化
 			agi = new AdvanceGameInfo(gameInfo, gameSetting);
+			additionalInfo = new AdditionalGameInfo(gameInfo);
+			this.gameInfo = gameInfo;
 
 
 			// 個人の持っている情報
@@ -319,7 +328,6 @@ public abstract class AbstractBaseStrategyPlayer extends AbstractRole {
 			// 時間計測開始
 			long starttime = System.currentTimeMillis();
 
-			super.update(gameInfo);
 
 			// 拡張ゲーム情報の更新
 			agi.update(gameInfo);
@@ -346,7 +354,7 @@ public abstract class AbstractBaseStrategyPlayer extends AbstractRole {
 			// update()の処理時間が最長なら記憶
 			if( updatetime > MaxUpdateTime ){
 				MaxUpdateTime = updatetime;
-				MaxUpdateTiming = new StringBuilder().append(getDay()).append("日目 ").append(gameInfo.getTalkList().size()).append("発言").toString();
+				MaxUpdateTiming = new StringBuilder().append(gameInfo.getDay()).append("日目 ").append(gameInfo.getTalkList().size()).append("発言").toString();
 			}
 
 		}catch(Exception ex){
@@ -743,7 +751,7 @@ public abstract class AbstractBaseStrategyPlayer extends AbstractRole {
 		for( Agent agent : agi.latestGameInfo.getAliveAgentList() ){
 
 			// 自分はスキップ
-			if( agent.equals(getMe()) ){
+			if( agent.equals(additionalInfo.getMe()) ){
 				continue;
 			}
 

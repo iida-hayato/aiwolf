@@ -22,6 +22,10 @@ public class StrategyWerewolf extends AbstractBaseStrategyPlayer {
 	public StrategyWerewolf(AgentStatistics agentStatistics) {
 		super(agentStatistics);
 	}
+	@Override
+	public String getName() {
+		return "wolf1";
+	}
 
 	@Override
 	public void dayStart() {
@@ -60,7 +64,7 @@ public class StrategyWerewolf extends AbstractBaseStrategyPlayer {
 				if( !isCameOut ){
 					isCameOut = true;
 
-					String ret = TemplateTalkFactory.comingout( getMe(), Role.MEDIUM );
+					String ret = TemplateTalkFactory.comingout( additionalInfo.getMe(), Role.MEDIUM );
 					return ret;
 				}
 
@@ -74,7 +78,7 @@ public class StrategyWerewolf extends AbstractBaseStrategyPlayer {
 				if( !isCameOut ){
 					isCameOut = true;
 
-					String ret = TemplateTalkFactory.comingout( getMe(), fakeRole );
+					String ret = TemplateTalkFactory.comingout( additionalInfo.getMe(), fakeRole );
 					return ret;
 				}
 			}
@@ -186,7 +190,7 @@ public class StrategyWerewolf extends AbstractBaseStrategyPlayer {
 				setFakeRole(Role.SEER);
 				// 他に占騙りがいれば素村騙りに戻す
 				for( ComingOut co : agi.wisperComingOutList ){
-					if( co.isEnable() && co.agentNo != getMe().getAgentIdx() && co.role == Role.SEER ){
+					if( co.isEnable() && co.agentNo != additionalInfo.getMe().getAgentIdx() && co.role == Role.SEER ){
 						setFakeRole(Role.VILLAGER);
 					}
 				}
@@ -205,7 +209,7 @@ public class StrategyWerewolf extends AbstractBaseStrategyPlayer {
 			// 騙る役職の報告
 			if( declaredFakeRole != fakeRole ){
 				declaredFakeRole = fakeRole;
-				return TemplateWhisperFactory.comingout(getMe(), fakeRole);
+				return TemplateWhisperFactory.comingout(additionalInfo.getMe(), fakeRole);
 			}
 
 			// 噛み先の報告
@@ -459,7 +463,7 @@ public class StrategyWerewolf extends AbstractBaseStrategyPlayer {
 
 
 
-		Judge newJudge = new Judge( getMe().getAgentIdx(), inspectAgentNo, result, null );
+		Judge newJudge = new Judge( additionalInfo.getMe().getAgentIdx(), inspectAgentNo, result, null );
 
 		agi.addFakeSeerJudge(newJudge);
 

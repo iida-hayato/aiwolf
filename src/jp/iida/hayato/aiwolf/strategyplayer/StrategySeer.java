@@ -31,7 +31,7 @@ public class StrategySeer extends AbstractBaseStrategyPlayer {
 				isCameOut = true;
 
 				// ���b
-				workString = TemplateTalkFactory.comingout(getMe(), Role.SEER);
+				workString = TemplateTalkFactory.comingout(additionalInfo.getMe(), Role.SEER);
 				return workString;
 			}
 
